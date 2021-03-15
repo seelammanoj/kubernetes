@@ -15,27 +15,27 @@ Note: Before using the ingress-nginx controller, we should disable the traefik i
         server \
         --disable traefik \
 
--> Now, restart the k3s.service
-        sudo systemctl daemon-reload
-        sudo systemctl restart k3s.service
+-> Now, restart the k3s.service \
+        sudo systemctl daemon-reload \
+        sudo systemctl restart k3s.service 
 
--> Check the traefik pods/service are running or not
-        kubectl get pods -n kube-system
+-> Check the traefik pods/service are running or not \
+        kubectl get pods -n kube-system \
 This should show no traefik pods are running
 
 -> Then enable the ingress-nginx controller, by the helm package repo
 
 Now, steps to deploy hello-kubernetes app and service
-1. kubectl apply -f sample-hello.yaml
+1. kubectl apply -f sample-hello.yaml \
 Check the deployments and service are created, by the below command
 2. kubectl get pods -o wide
 3. kubectl get deployment -o wide
-4. kubectl get service -o wide
+4. kubectl get service -o wide \
 All the above commands should lists the pods, service, deployment for hello-kubernetes app
 Now, apply the ingress resource to route the external traffic to the cluster via service
-5. kubectl apply -f sample-ingress.yaml
+5. kubectl apply -f sample-ingress.yaml \
 After running the above command, you should able to see ingress resource created for the hello-kubernetes
-Check, the ingress resource by the below command
+Check, the ingress resource by the below command 
 6. kubectl get ingress
 
 All done!!!
