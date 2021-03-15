@@ -1,5 +1,5 @@
 # kubernetes
-git clone https://github.com/seelammanoj/kubernetes.git
+git clone https://github.com/seelammanoj/kubernetes.git \
 git checkout hello-kubernetes
 
 Steps to setup the deployment of an application and creating service.
@@ -39,9 +39,9 @@ Check, the ingress resource by the below command
 6. kubectl get ingress
 
 All done!!!
-Now, Try to access the hello-kubernetes from machine kubernetes cluster is running or outside cluster network
-To check using curl
-7. curl http://<IP of the physical machine/VM where cluster is running>
-To check using browser
-Open your browser and type the below url in the search box
+Now, Try to access the hello-kubernetes application from machine where kubernetes cluster is running or from outside cluster network \
+To check using curl \
+7. curl http://<IP of the physical machine/VM where cluster is running> \
+To check using browser \
+Open your browser and type the below url in the search box \
 http://<IP of the physical machine/VM where cluster is running>
