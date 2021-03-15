@@ -32,7 +32,7 @@ Note: Before using the ingress-nginx controller, we should disable the traefik i
 
        kubectl get deployments -n kube-system
        
-This should show no traefik pods are running
+This should show no traefik running
 
 -> Then enable the ingress-nginx controller, by the following the below link
 
