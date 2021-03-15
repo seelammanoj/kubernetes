@@ -71,3 +71,6 @@ To check using browser
 Open your browser and type the below url in the search box 
 
         http://<IP of the physical machine/VM where cluster is running>
+        
+![ingress](https://user-images.githubusercontent.com/57456935/111144662-5f525600-85ad-11eb-9211-f810130cb484.png)
+
