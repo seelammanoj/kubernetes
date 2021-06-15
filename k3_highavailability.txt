@@ -1,0 +1,51 @@
+Date: 14-06-2021
+TODO: check on high availability for k3s
+- brush up on  all the k3s topics once more
+- check on the nodes like master node and agent node
+- check on the high availability for k3s
+- check on the loadbalancer and quba lite
+- Chapters Agent Tunnel, etcd management and Agent and client side loadbalancing 
+
+Notes: on k3s high availability
+- high availability is all about k3s cluster can tolerate failure and remain up and running and service traffic to the users
+- Application should also be built and confugured for HA
+
+
+steps to create HA k3s
+- create three k3s server nodes(control plane) atleast
+- create one k3s agent (worker node) atleast
+- Check k3-agent-loadbalancer.json for running server nodes
+
+to setting up high availability for k3s with the three control plane and one agent node
+1st machine:
+- mkdir -p /etc/rancher/k3s
+- nano /etc/rancher/k3s/config.yaml (add the below data in this file)
+	control-init: true
+- install the k3s control plane in one machine
+- curl -sfL https://get.k3s.io | sh -
+- kubectl get nodes 
+- control plane node should be created and added to the cluster
+- run the k3s-server with the control-init in the first machine 
+- then add the other nodes to the cluster with the token generated from the first machine
+- cat /var/lib/rancher/k3s/server/node-token
+
+2nd machine:
+- mkdir /etc/rancher/k3s
+- nano /etc/rancher/k3s/config.yaml (append the below content in this file )
+	token: "<get the token id from the first k3s-server node>"
+	server: "https://<IP of the k3server1 node:6443>"
+- rm -rf /var/lib/rancher/k3s  
+- curl -sfL https://get.k3s.io/ sh -
+
+3rd machine:
+- same applies as 2nd machine
+4th machine:
+- Install the worker node (k3s-agent)
+- add the token value as per the above
+- install the k3s-agent using the below command
+- curl -sfL https://get.k3s.io | sh -s agent
+- check the file in /var/lib/rancher/k3s/agent/k3s-agent-loadbalancer.json
+- we should be able to see the all the server nodes IPs in the this loadbalancer
+
+
+kubectl scale --current-replicas=1 --replicas=4 deployment/hello-k8s-deployment
